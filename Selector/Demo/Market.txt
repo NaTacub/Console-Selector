@@ -1,0 +1,19 @@
+Milk,2.99
+Eggs,4.99
+Bread,3.99
+Gum,1.50
+Shampoo,5.99
+Bagels,2.99
+Chicken Thighs,12.79
+Pasta,4.99
+Vegetable Oil,3.99
+Rice,8.99
+Peanut Butter,4.99
+Water,0.99
+Beans,1.50
+Onions,1.99
+Bananas,1.79
+Toothpaste,6.99
+Paper Towels,6.99
+Laundry Detergent,39.99
+Dish Soap,22.99

@@ -1,0 +1,510 @@
+
+            ___________________________________NOTE___________________________________
+                Decided to save all of my scrapped code here if anyone wants to peer
+               through it. If you wish to expand upon my code, go for it. My code was
+             only meant to act as a base for a niche tool that could assist in viewing
+                    mass amounts of data. Thanks for checking out my project!
+
+
+
+
+
+
+
+
+
+
+
+
+<-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* Program.cs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*>
+# Details
+#   Purpose was for debugging throughout the project.
+#   Contains notes of rejected features.
+#   Info may be outdated compared to the final product.
+
+using System.Diagnostics;
+using Selector;
+
+/* Brainstorming
+] 2D selector
+] Hold control to jump to the end of selection
+] Add Option to wrap around to last option
+] Remove* Options
+] Add* Options
+] Horizontal Continuous: if too many options, move right to reveal more
+] Vertical Continuous: if too many options, move down to reveal more
+] Add Center alignment with vertical selectors
+] If we have too many options, add an option to load options asynchronously or as they come.
+] Replace substring with AsSpan
+] Mass selector:
+] Add a way to use a different SelectorOption that has more utilty for specific classes
+] Add constructor where you give it a set size for each option? More efficient since we use math over indiivdual iteration in scrollselectors
+*/
+
+// Top Level statements
+Console.WriteLine("Hit Enter to intialize array...");
+Console.ReadLine();
+
+// Stopwatch stopwatch = new();
+// stopwatch.Start();
+
+// var options = new Option[10000];
+
+// ConsoleColor initialColor = ConsoleColor.White;
+// for (int i = 0; i < options.Length; i++) {
+//     // options[i] = new(string.Concat("   ", i, "   "), ConsoleColor.White);
+//     options[i] = new(string.Concat(new string(' ', i % 10), i, new string(' ', i % 10)), (ConsoleColor)(((int)initialColor + i) % 16));
+// }
+
+// Option[] options =
+// {
+//     new("+-+-+[111]+-+-+", ConsoleColor.Red),
+//     new("+-+-+[222]+-+-+", ConsoleColor.Yellow),
+//     new("+-+-+[333]+-+-+", ConsoleColor.Green),
+//     new("+-+-+[444]+-+-+", ConsoleColor.Blue),
+//     new("+-+-+[555]+-+-+", ConsoleColor.Magenta),
+//     new("+-+-+[666]+-+-+", ConsoleColor.White),
+//     new("+-+-+[777]+-+-+", ConsoleColor.Cyan),
+//     new("+-+-+[888]+-+-+", ConsoleColor.DarkGreen),
+//     new("+-+-+[999]+-+-+", ConsoleColor.DarkYellow),
+//     new("+-+-+[000]+-+-+", ConsoleColor.Gray),
+//     new("+-+-+[111]+-+-+", ConsoleColor.Red),
+//     new("+-+-+[222]+-+-+", ConsoleColor.Yellow),
+//     new("+-+-+[333]+-+-+", ConsoleColor.Green),
+//     new("+-+-+[444]+-+-+", ConsoleColor.Blue),
+//     new("+-+-+[555]+-+-+", ConsoleColor.Magenta),
+//     new("+-+-+[666]+-+-+", ConsoleColor.White),
+//     new("+-+-+[777]+-+-+", ConsoleColor.Cyan),
+//     new("+-+-+[888]+-+-+", ConsoleColor.DarkGreen),
+//     new("+-+-+[999]+-+-+", ConsoleColor.DarkYellow),
+//     new("+-+-+[000]+-+-+", ConsoleColor.Gray),
+//     new("+-+-+[111]+-+-+", ConsoleColor.Red),
+//     new("+-+-+[222]+-+-+", ConsoleColor.Yellow),
+//     new("+-+-+[333]+-+-+", ConsoleColor.Green),
+//     new("+-+-+[444]+-+-+", ConsoleColor.Blue),
+//     new("+-+-+[555]+-+-+", ConsoleColor.Magenta),
+//     new("+-+-+[666]+-+-+", ConsoleColor.White),
+//     new("+-+-+[777]+-+-+", ConsoleColor.Cyan),
+//     new("+-+-+[888]+-+-+", ConsoleColor.DarkGreen),
+//     new("+-+-+[999]+-+-+", ConsoleColor.DarkYellow),
+//     new("+-+-+[000]+-+-+", ConsoleColor.Gray)
+// };
+
+Option[] options =
+{
+    new("Health Potion", ConsoleColor.Green),
+    new("Stamina Potion", ConsoleColor.Cyan),
+    new("Defense Potion", ConsoleColor.Yellow),
+    new("Arrows", ConsoleColor.DarkYellow),
+    new("Ruby Amulet", ConsoleColor.Red),
+    new("Mysterious Brew", ConsoleColor.Magenta)   
+};
+// stopwatch.Stop();
+
+// PrintTime("Time taken to initialize Array: ");
+
+// Console.WriteLine("\nHit Enter to intialize the selector...");
+// Console.ReadLine();
+
+// stopwatch.Reset();
+// stopwatch.Start();
+
+HorizontalScrollSelector<Option> selector = new(options);
+
+// stopwatch.Stop();
+
+// PrintTime("Time taken to initialize selector: ");
+
+// Console.WriteLine("hit Enter to query selection...");
+// Console.ReadLine();
+// selector.CurrentIndex = options.Length - 1;
+var a = selector.QuerySelection();
+selector.ClearSelection();
+
+// Console.Write("Did it work? ");
+// string? input = Console.ReadLine();
+
+Console.WriteLine("Selected: " + a?.GetName());
+Console.ReadLine();
+
+// void PrintTime(string precedingText)
+// {
+//     TimeSpan time = stopwatch.Elapsed;
+//     string timeString = String.Format("{0:00}:{1:00}:{2:00}", time.Minutes, time.Seconds, time.Milliseconds);
+//     Console.WriteLine(precedingText + timeString);
+// }
+
+// return;
+// HorizontalConfigurableSelector<Option> selector = new(options);
+
+// Console.WriteLine("Lets work on 3 tasks! Press enter to continue");
+// Console.ReadLine();
+
+// var selected = selector.QueryRemoval(3);
+// // selector.ClearSelection();
+
+// // Console.WriteLine("Lets finish one more task!");
+// // Console.ReadLine();
+
+// // selector.RemoveOption(selected);
+// // selector.QuerySelection();
+// // selector.ClearSelection();
+
+// Console.WriteLine("Incoming tasks! Do 5 more");
+// Console.ReadLine();
+// selector.AddOption(new("Documents", ConsoleColor.Yellow));
+// selector.AddOption(new("Field Trip", ConsoleColor.Cyan));
+// selector.CurrentIndex = 0;
+// selector.UpdateSelection();
+// selector.QueryRemoval(5);
+
+
+// Console.WriteLine("Wrapping up the day!\n");
+
+class Option(string n, ConsoleColor c) : IOption
+{
+    string name = n;
+    ConsoleColor color = c;
+
+    public string GetName() => name;
+
+    public ConsoleColor GetColor() => color;
+
+    public void Select() {
+        Console.WriteLine("Selected " + name +" !!!!");   
+    }
+}
+/*
+    // new("     A     ", ConsoleColor.White),
+    // new("     B     ", ConsoleColor.White),
+    // new("     C     ", ConsoleColor.White),
+    // new("     D     ", ConsoleColor.White),
+    // new("     E     ", ConsoleColor.White),
+    // new("     F     ", ConsoleColor.White),
+    // new("     G     ", ConsoleColor.White),
+    // new("     H     ", ConsoleColor.White),
+    // new("     I     ", ConsoleColor.White),
+    // new("     J     ", ConsoleColor.White),
+    // new("     K     ", ConsoleColor.White),
+    // new("     L     ", ConsoleColor.White),
+    // new("     M     ", ConsoleColor.White),
+    // new("     N     ", ConsoleColor.White),
+    // new("     O     ", ConsoleColor.White),
+    // new("     P     ", ConsoleColor.White),
+    // new("     Q     ", ConsoleColor.White),
+    // new("     R     ", ConsoleColor.White),
+    // new("     S     ", ConsoleColor.White),
+    // new("     T     ", ConsoleColor.White),
+    // new("     U     ", ConsoleColor.White),
+    // new("     V     ", ConsoleColor.White),
+    // new("     W     ", ConsoleColor.White),
+    // new("     X     ", ConsoleColor.White),
+    // new("     Y     ", ConsoleColor.White),
+    // new("     Z     ", ConsoleColor.White)
+
+
+Print and select multiple at once by accident
+public T[] QueryRemoval(int count) {
+            count = Math.Clamp(count, 0, options.Count);
+
+            List<T> selectedOptions = new List<T>(count);
+            Console.CursorVisible = false;
+
+            PrintSelection();
+            for (int i = 0; i < count; i++) {
+                // allow user to cycle through selection list
+                while (true) {
+                    // ConsoleKeyInfo keyInfo = ProgramSettings.UseFile ? ProgramSettings.ReadKeyFromFile() : Console.ReadKey(true);
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                    // move left
+                    if (keyInfo.Key == IncrementKey)
+                        CurrentIndex++;
+                    // move right
+                    else if (keyInfo.Key == DecrementKey)
+                        CurrentIndex--;
+                    // choose option
+                    else if (keyInfo.Key == ConfirmationKey)
+                        break;
+                    
+                    UpdateSelection();
+                }
+                // once we select an option, add to the list and remove it
+                selectedOptions.Add(options[CurrentIndex].instance);
+                RemoveOptionAtIndex(CurrentIndex);
+            }
+            // cursor positon set to the line under the selection area
+            Console.SetCursorPosition(0, LastRow + 1);
+
+            Console.CursorVisible = true;
+
+            return selectedOptions.ToArray();
+        }
+    }
+
+
+                    int selectedIndex = CurrentIndex;
+                SelectableOption removedOption = options[selectedIndex];
+                // once we select an option, add to the list and remove it
+                selectedOptions.Add(removedOption.instance);
+
+                RemoveOptionAtIndex(selectedIndex);
+
+                // int currCol = Console.CursorLeft, currRow = Console.CursorTop;
+                Console.SetCursorPosition(removedOption.column, removedOption.row);
+                for (int i = index; i < options.Count; i++) {
+                    options[i].Print();
+                    Console.Write(new string(' ', optionSpacing));
+                }
+                Console.Write(new string(' ', removedOption.formattedName.Length + optionSpacing));
+                
+                // Console.SetCursorPosition(currCol, currRow);
+
+
+                // int currCol = Console.CursorLeft, currRow = Console.CursorTop;
+            // Console.SetCursorPosition(removedOption.column, removedOption.row);
+            options.RemoveAt(index);
+            // for (int i = index; i < options.Count; i++) {
+            //     options[i].Print();
+            //     Console.Write(new string(' ', optionSpacing));
+            // }
+            // Console.Write(new string(' ', removedOption.formattedName.Length + optionSpacing));
+            
+            // Console.SetCursorPosition(currCol, currRow);
+
+            // adjust currently selected element if necessary
+            if (index > CurrentIndex || CurrentIndex == options.Count) {
+                CurrentIndex--;
+            }
+
+
+// ensure no options exceed
+            // if (name.Length + format.Length - SelectorDefaults.FormatLength > selector.AvailableSpace) {
+            //     int truncation = selector.AvailableSpace - 3;
+            //     name = string.Format(format, truncation > 0 ? string.Concat(name.AsSpan(0, truncation), "...") : '?');
+            // } else {
+            // name = string.Format(format, name);
+            // }
+    public interface IConfigurableSelector<TOption> : ISelector<TOption> where TOption : IOption
+    {
+        void AddOption(TOption newOption);
+        bool RemoveOption(TOption target);
+    }
+
+    /// <summary>
+        /// Updates the menu's appearance if any selector values were changed
+        /// </summary>
+        void UpdateSelection();
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* HorizontalConfigurableSelector.cs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*>
+# Details
+#   Allow you to directly add and subtract options from the selector rather than needing initialize a new one.
+#   Contains new method, QueryRemoval(). Select a specific amount of options to remove. Returns an array of the selected options by the user.
+#   Incredibly outdated. Will receive compile errors if pasted into a .cs file.
+#   (Nonscrollable)
+
+// namespace Selector
+// {
+//     // ? Linked List
+//     public class HorizontalConfigurableSelector<TOption> : HorizontalSelector<TOption>, IConfigurableSelector<TOption> where TOption : IOption
+//     {
+//         public HorizontalConfigurableSelector(TOption[] options, string format = SelectorDefaults.DefaultFormat, int optionSpacing = 5) : base(options, format, optionSpacing) { }
+
+//         // safe append
+//         public void AddOption(TOption newOption) {
+//             var option = new SelectorSlot<TOption>();
+//             option.Init(this, newOption, FormatOption(newOption));
+//             options.Add(option);
+//         }
+
+//         // Method for inserting? We may need to reprint entire line
+
+//         // remove and shift options to the left if necessary
+//         public bool RemoveOption(TOption target) {
+//             int index = options.FindIndex(o => o.instance.Equals(target));
+//             if (index != -1) {
+//                 RemoveOptionAtIndex(index);
+//                 return true;
+//             }
+//             return false;
+//         }
+
+//         private void RemoveOptionAtIndex(int index) {                
+//             options.RemoveAt(index);
+
+//             // adjust currently selected element if necessary
+//             if (index > CurrentIndex || CurrentIndex == options.Count) {
+//                 CurrentIndex--;
+//             }
+//         }
+
+//         public TOption[] QueryRemoval(int count) {
+//             if (options.Count == 0) {
+//                 return Array.Empty<TOption>();
+//             }
+
+//             List<TOption> selectedOptions = new List<TOption>(count);
+//             Console.CursorVisible = false;
+
+//             PrintSelection();
+//             for (int i = 0; i < count; i++) {
+//                 // allow user to cycle through selection list
+//                 while (true) {
+//                     // ConsoleKeyInfo keyInfo = ProgramSettings.UseFile ? ProgramSettings.ReadKeyFromFile() : Console.ReadKey(true);
+//                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+//                     // move left
+//                     if (keyInfo.Key == IncrementKey)
+//                         CurrentIndex++;
+//                     // move right
+//                     else if (keyInfo.Key == DecrementKey)
+//                         CurrentIndex--;
+//                     // choose option
+//                     else if (keyInfo.Key == ConfirmationKey)
+//                         break;
+                    
+//                     UpdateSelection();
+//                 }
+//                 // once we select an option, add to the selected list, remove it, then update available options to the user
+//                 int selectedIndex = CurrentIndex;
+//                 var removedOption = options[selectedIndex];
+                
+//                 selectedOptions.Add(removedOption.instance);
+
+//                 RemoveOptionAtIndex(selectedIndex);
+
+//                 Console.SetCursorPosition(removedOption.column, removedOption.row);
+//                 for (int j = selectedIndex; j < options.Count; j++) {
+//                     options[j].Print();
+//                     Console.Write(new string(' ', optionSpacing));
+//                 }
+//                 Console.Write(new string(' ', removedOption.formattedName.Length + optionSpacing));
+
+//                 if (options.Count == 0)
+//                     break;
+
+//                 options[CurrentIndex].Select();
+//             }
+//             // cursor positon set to the line under the selection area
+//             Console.SetCursorPosition(0, PrintedRow + 1);
+
+//             Console.CursorVisible = true;
+
+//             return selectedOptions.ToArray();
+//         }
+//     }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* SelectorDemo.cs -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*>
+# Details
+#   Abandoned idea of showcasing basic functionality of the selectors.
+#   Idea: Offers 3 separate types of uses
+#         1. Scroll through a database of employee info
+#         2. Select an item from a player's inventory in an RPG-style game
+#         3. Cycle through a range of values to modify inside a number table.
+#   Below only contains the class definition of the Inventory concept
+
+class Inventory : IOption
+{
+    public VerticalScrollSelector<Option> selector;
+    public Inventory() {
+        Option[] options = {
+            new Option("Gilded Shield", ConsoleColor.Yellow),
+            new Option("Flaming Mirage", ConsoleColor.Yellow),
+            new Option("Magical Sceptor", ConsoleColor.Yellow),
+            new Option("Wooden Stick", ConsoleColor.Yellow),
+            new Option("Enchanted Tomb", ConsoleColor.Yellow),
+            new Option("Health Potion", ConsoleColor.Yellow),
+            new Option("Stamina Potion", ConsoleColor.Yellow)
+        };
+
+        selector = new VerticalScrollSelector<Option>(options) {
+            MaxDisplayOptions = 1,
+        };
+
+        selector.Model.highlightedBackgroundColor = Console.BackgroundColor;
+        selector.Model.highlightedForegroundColor = ConsoleColor.DarkCyan;
+    }
+
+    public void Select() {
+        Console.WriteLine("Select an item!");
+        Option? item = selector.QuerySelection();
+        if (item == null)
+            return;
+        selector.ClearSelection();
+
+        Console.WriteLine("You selected " + item.GetName());
+    }
+
+
+    public ConsoleColor GetColor() => ConsoleColor.White;
+    public string GetName() => "Inventory";
+}
+
+
+
+// FileOption[] files = Directory.EnumerateFiles("Demo", "*.txt").Select(file => {
+    //     int separator = file.IndexOf('\\');
+    //     return new FileOption() {
+    //         path = file,
+    //         name = file.Substring(separator + 1, file.Length - separator - 1)
+    //     };
+    // }).ToArray();
+
+    // HorizontalFixedSelector<FileOption> horizontalSelector = new HorizontalFixedSelector<FileOption>(files);
+
+    // Console.WriteLine("What file do you want to access?");
+    // FileOption? userOption = horizontalSelector.QuerySelection();
+    // // only null in the case we passed a null element or an unpopulated array/list into the selector
+    // if (userOption == null) {
+    //     Console.ForegroundColor = ConsoleColor.Red;
+    //     Console.WriteLine("No files were found");
+    //     Console.ResetColor();
+    //     return;
+    // }
+
+    // string userFile = userOption.path;
+
+    // Console.WriteLine("You chosen: " + userFile);
