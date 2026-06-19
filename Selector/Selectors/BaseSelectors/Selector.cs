@@ -160,7 +160,3 @@ namespace Selector
         }
     }
 }
-// }        /// <summary>
-//         /// Format the option instance's name using the Selector's set slot string format.
-//         /// </summary>
-//         public string FormatOption(TOption instance) => string.Format(Model.format, instance.GetName());
